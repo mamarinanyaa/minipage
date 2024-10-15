@@ -7,7 +7,7 @@
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.tag:hover {
+.tag:hover, .active {
     background-color: #758694;
     color: #FFF8F3;
 }

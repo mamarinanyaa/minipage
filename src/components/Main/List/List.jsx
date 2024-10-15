@@ -1,9 +1,13 @@
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import style from './List.module.css'
 import { Item } from './Item/Item';
 import { TotalPrice } from './TotalPrice/TotalPrice';
+import { tagContext } from '../../../context/tagContext';
 
 export const List = () => {
+    const {filterTags, setFilterTags} = useContext(tagContext);
+    // console.log(filterTags);
+
     const LIST = [
         {
             title: "Plastic: A Novel",
@@ -37,6 +41,21 @@ export const List = () => {
     ];
 
     const [list, setList] = useState(LIST);
+
+    // useEffect(() => {
+
+    //   let res = LIST.filter((element) => {
+    //     element.tags.forEach(el=>{
+    //       if (filterTags.includes(el))
+    //         return element;
+    //     })
+    //   })
+  
+    //   // console.log(res);
+    // }, [filterTags])
+
+    
+
     return (
         <div className={style.container}> 
           <ul className={style.list}>
