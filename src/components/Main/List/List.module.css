@@ -1,0 +1,17 @@
+.container {
+    background-color: #758693;
+    color: #FFF8F3;
+    border-radius: 32px;
+
+    padding: 32px;
+
+    display: grid;
+    align-items: center;
+    gap: 20px;
+}
+
+.list {
+    display: grid;
+    align-items: center;
+    gap: 20px;
+}

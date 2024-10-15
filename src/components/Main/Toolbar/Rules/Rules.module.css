@@ -1,0 +1,18 @@
+.container {
+
+    display: grid;
+    grid-template-columns: 50px 60px;
+    gap: 18px;
+}
+
+.btn {
+    color: #FFF8F3;
+    display: grid;
+    grid-template-columns: 30px 12px;
+    align-items: center;
+    gap: 8px;
+    background-color: transparent;
+    border: 0;
+
+    /* font-weight: 900; */
+  }

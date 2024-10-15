@@ -1,0 +1,26 @@
+.container {
+
+    display: grid;
+    /* grid-template-columns: 37px 45px 34px; */
+    grid-template-columns: auto auto auto;
+    /* align-items: center; */
+    gap: 40px;
+}
+
+/* button {
+    color: #FFF8F3;
+    display: grid;
+    align-items: end;
+    gap: 8px;
+    background-color: transparent;
+    border: 0;
+} */
+.btn {
+    color: #FFF8F3;
+    display: grid;
+    grid-template-columns: auto 11px;
+    align-items: end;
+    gap: 8px;
+    /* background-color: transparent;
+    border: 0; */
+}

@@ -1,0 +1,16 @@
+.container {
+    position: absolute;
+    display: inline-block;
+    right: 5%;
+    top: 70%;
+
+    background-color: #405D72;
+    border-radius: 17px;
+
+    padding: 16px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+  }
+  

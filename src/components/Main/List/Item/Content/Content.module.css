@@ -1,0 +1,13 @@
+.container {
+    padding: 10px;
+
+    display: grid;
+    align-items: center;
+    gap: 10px;
+}
+
+.title {
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 19.36px;
+}

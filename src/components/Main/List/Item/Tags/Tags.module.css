@@ -1,0 +1,8 @@
+.container {
+    border-top: 0.5px solid white;
+    padding-top: 8px;
+    
+    display: flex;
+    justify-content: start;
+    gap: 24px;
+}
