@@ -5,8 +5,9 @@ import { TotalPrice } from './TotalPrice/TotalPrice';
 import { tagContext } from '../../../context/tagContext';
 
 export const List = () => {
-    const {filterTags, setFilterTags} = useContext(tagContext);
-    // console.log(filterTags);
+    const {filterTags, filterValue} = useContext(tagContext);
+    
+    // console.log(filterValue);
 
     const LIST = [
         {
@@ -37,22 +38,42 @@ export const List = () => {
             date: "February 2024",
             price: 981,
             tags: ["Health", "Biochemistry"]
-          }
+          },
+          
     ];
 
     const [list, setList] = useState(LIST);
 
-    // useEffect(() => {
+    useEffect(() => {
 
-    //   let res = LIST.filter((element) => {
-    //     element.tags.forEach(el=>{
-    //       if (filterTags.includes(el))
-    //         return element;
-    //     })
-    //   })
-  
-    //   // console.log(res);
-    // }, [filterTags])
+      let filteredList = LIST;
+
+      if (filterTags.length > 0)
+        filteredList = LIST.filter((element) =>
+          element.tags.some(tag => filterTags.includes(tag))
+        );
+
+      switch (filterValue.key){
+        case 'price':
+          filteredList = [...filteredList].sort((a, b) =>
+              filterValue.value === 'up' ? b.price - a.price : a.price - b.price
+          );
+          break;
+        case 'author':
+          filteredList = [...filteredList].sort((a, b) =>
+              filterValue.value === 'up' ? a.author.localeCompare(b.author) : b.author.localeCompare(a.author)
+          );
+          break;
+        case 'date':
+          filteredList = [...filteredList].sort((a, b) =>
+              filterValue.value === 'up' ? new Date(a.date) - new Date(b.date) : new Date(b.date) - new Date(a.date)
+          );
+          break;
+      }
+
+      setList(filteredList);
+
+    }, [filterTags, filterValue])
 
     
 

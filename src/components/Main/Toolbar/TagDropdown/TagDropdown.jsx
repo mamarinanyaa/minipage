@@ -6,10 +6,10 @@ import { tagContext } from '../../../../context/tagContext';
 
 export const TagDropdown = ({closeDropDown}) => {
     const tagsRef = useRef(null);
-    const {filterTags, setFilterTags} = useContext(tagContext);
+    const {filterTags} = useContext(tagContext);
 
     const handleClick = (e) => {
-        if (tagsRef.current && !tagsRef.current.contains(e.target) && e.target.tagName!='svg'){
+        if (tagsRef.current && !tagsRef.current.contains(e.target) && e.target.tagName!=='svg'){
             closeDropDown();
         }
     }

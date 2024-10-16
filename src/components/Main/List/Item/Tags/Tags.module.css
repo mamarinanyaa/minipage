@@ -6,3 +6,17 @@
     justify-content: start;
     gap: 24px;
 }
+
+.tag {
+    background-color: #FFF8F3;
+    border-radius: 50px;
+    border: 0;
+    padding: 10px;
+
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.tag:hover, .active {
+    background-color: #758694;
+    color: #FFF8F3;
+}

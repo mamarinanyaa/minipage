@@ -1,15 +1,15 @@
 import style from './Main.module.css'
 import { Toolbar } from "./Toolbar/Toolbar"
 import {List} from "./List/List"
-import { TagnContextProvider } from '../../context/tagContext'
+import { TagContextProvider } from '../../context/tagContext'
 
 export const Main = () => {
     return (
-        <TagnContextProvider>
+        <TagContextProvider>
             <div className={style.container}>
                 <Toolbar />
                 <List />
             </div>
-        </TagnContextProvider>
+        </TagContextProvider>
     )
 }
