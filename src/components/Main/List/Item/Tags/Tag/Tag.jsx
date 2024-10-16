@@ -7,12 +7,12 @@ export const Tag = ({isActiveTag ,nonClicked, children}) => {
     const {filterTags, setFilterTags} = useContext(tagContext);
 
     const handleClick = () => {
-        if (nonClicked) return;
+        // if (nonClicked) return;
         setClicked(!isClicked)
     };
 
     useEffect(() => {
-        if (nonClicked) return;
+        // if (nonClicked) return;
 
         if (isClicked && !filterTags.includes(children))
             setFilterTags([...filterTags, children]) 

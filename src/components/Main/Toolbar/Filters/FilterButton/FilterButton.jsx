@@ -6,25 +6,32 @@ import { tagContext } from '../../../../../context/tagContext';
 
 export const FilterButton = ({id, activeFilter, setActiveFilter, className, children}) => {
 
-    const [isActive, setACtive] = useState(false);
-    const {setFilterValue} = useContext(tagContext)
+    const [direction, setDirection] = useState(false);
+    const {filterValue, setFilterValue} = useContext(tagContext)
+
+    useEffect(() => {
+        if (filterValue.key == undefined){
+            setActiveFilter()
+        }
+    }, [filterValue])
 
     useEffect(()=>{
         
-        if (activeFilter !=id) return;
+        if (activeFilter != id) return;
 
         setFilterValue({
             key: children,
-            value: isActive ? 'up' : 'down'
+            value: direction ? 'up' : 'down'
         })
-    }, [isActive])
+
+    }, [direction])
 
     const handleClick = () => {
         setActiveFilter(id)
-        setACtive(!isActive)
+        setDirection(!direction)
     }
 
     return (
-        <button onClick={handleClick} className={id == activeFilter ? className + " " + style.btn_active : className}>{children}{isActive ? <ArrowIconUp/> : <ArrowIconDown/>}</button>
+        <button onClick={handleClick} className={id == activeFilter ? className + " " + style.btn_active : className}>{children}{direction ? <ArrowIconUp/> : <ArrowIconDown/>}</button>
     )
 }
