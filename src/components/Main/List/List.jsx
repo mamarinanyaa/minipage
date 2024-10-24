@@ -3,11 +3,10 @@ import style from './List.module.css'
 import { Item } from './Item/Item';
 import { TotalPrice } from './TotalPrice/TotalPrice';
 import { selectorContext } from '../../../context/selectorContext';
+import { organizeList } from '../../../utils/utils';
 
 export const List = () => {
     const {selectorTags, selectorOption} = useContext(selectorContext);
-    
-    // console.log(filterValue);
 
     let LIST = [
         {
@@ -42,38 +41,10 @@ export const List = () => {
           
     ];
     
-
     const [list, setList] = useState(LIST);
 
     useEffect(() => {
-
-      let filteredList = LIST;
-
-      if (selectorTags.length > 0)
-        filteredList = LIST.filter((element) =>
-          element.tags.some(tag => selectorTags.includes(tag))
-        );
-
-      switch (selectorOption.key){
-        case 'price':
-          filteredList = [...filteredList].sort((a, b) =>
-            selectorOption.value === 'up' ? b.price - a.price : a.price - b.price
-          );
-          break;
-        case 'author':
-          filteredList = [...filteredList].sort((a, b) =>
-              selectorOption.value === 'up' ? a.author.localeCompare(b.author) : b.author.localeCompare(a.author)
-          );
-          break;
-        case 'date':
-          filteredList = [...filteredList].sort((a, b) =>
-              selectorOption.value === 'up' ? new Date(a.date) - new Date(b.date) : new Date(b.date) - new Date(a.date)
-          );
-          break;
-      }
-
-      setList(filteredList);
-
+      setList(organizeList(selectorTags, selectorOption, LIST));
     }, [selectorTags, selectorOption])
 
     // let correctList = [...list]
