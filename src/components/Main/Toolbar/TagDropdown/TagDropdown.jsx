@@ -1,16 +1,16 @@
-import style from './TagDropdown.module.css'
-import { Tag } from '../../List/Item/Tags/Tag/Tag'
-import tags from "./tags.json"
+import style from './TagDropdown.module.css';
+import tags from "./tags.json";
 import { useEffect, useRef, useContext } from 'react';
-import { tagContext } from '../../../../context/tagContext';
+import { selectorContext } from '../../../../context/selectorContext';
+import {Tag} from '../../Tag/Tag';
 
-export const TagDropdown = ({closeDropDown}) => {
+export const TagDropdown = ({toggleDropDown}) => {
     const tagsRef = useRef(null);
-    const {filterTags} = useContext(tagContext);
+    const {selectorTags} = useContext(selectorContext);
 
     const handleClick = (e) => {
         if (tagsRef.current && !tagsRef.current.contains(e.target) && e.target.tagName!=='svg'){
-            closeDropDown();
+            toggleDropDown();
         }
     }
 
@@ -24,7 +24,7 @@ export const TagDropdown = ({closeDropDown}) => {
 
     return (
         <div ref={tagsRef} className={style.container}>
-            {tags.tags.map((tag, index) => <Tag key={index} isActiveTag={filterTags.includes(tag)}>{tag}</Tag>)}
+            {tags.tags.map((tag, index) => <Tag key={index} isActiveTag={selectorTags.includes(tag)}>{tag}</Tag>)}
         </div>
     )
 }

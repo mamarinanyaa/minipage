@@ -2,17 +2,17 @@ import { useState, useContext, useEffect } from 'react';
 import style from './List.module.css'
 import { Item } from './Item/Item';
 import { TotalPrice } from './TotalPrice/TotalPrice';
-import { tagContext } from '../../../context/tagContext';
+import { selectorContext } from '../../../context/selectorContext';
 
 export const List = () => {
-    const {filterTags, filterValue} = useContext(tagContext);
+    const {selectorTags, selectorOption} = useContext(selectorContext);
     
     // console.log(filterValue);
 
     let LIST = [
         {
             title: "Plastic: A Novel",
-            author: "",
+            author: "Someone",
             date: "February 2024",
             price: 420,
             tags: ["Climate change", "Sci-Fi"]
@@ -49,32 +49,32 @@ export const List = () => {
 
       let filteredList = LIST;
 
-      if (filterTags.length > 0)
+      if (selectorTags.length > 0)
         filteredList = LIST.filter((element) =>
-          element.tags.some(tag => filterTags.includes(tag))
+          element.tags.some(tag => selectorTags.includes(tag))
         );
 
-      switch (filterValue.key){
+      switch (selectorOption.key){
         case 'price':
           filteredList = [...filteredList].sort((a, b) =>
-              filterValue.value === 'up' ? b.price - a.price : a.price - b.price
+            selectorOption.value === 'up' ? b.price - a.price : a.price - b.price
           );
           break;
         case 'author':
           filteredList = [...filteredList].sort((a, b) =>
-              filterValue.value === 'up' ? a.author.localeCompare(b.author) : b.author.localeCompare(a.author)
+              selectorOption.value === 'up' ? a.author.localeCompare(b.author) : b.author.localeCompare(a.author)
           );
           break;
         case 'date':
           filteredList = [...filteredList].sort((a, b) =>
-              filterValue.value === 'up' ? new Date(a.date) - new Date(b.date) : new Date(b.date) - new Date(a.date)
+              selectorOption.value === 'up' ? new Date(a.date) - new Date(b.date) : new Date(b.date) - new Date(a.date)
           );
           break;
       }
 
       setList(filteredList);
 
-    }, [filterTags, filterValue])
+    }, [selectorTags, selectorOption])
 
     // let correctList = [...list]
 

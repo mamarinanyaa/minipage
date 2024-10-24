@@ -1,5 +1,5 @@
 import style from './Tags.module.css';
-import {Tag} from './Tag/Tag'
+import { Tag } from '../../../Tag/Tag';
 
 export const Tags = ({tags}) => {
     return (

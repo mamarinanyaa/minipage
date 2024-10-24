@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from 'react';
 import style from './Tag.module.css';
-import { tagContext } from '../../../../../../context/tagContext';
+import { selectorContext } from '../../../context/selectorContext';
 
 export const Tag = ({isActiveTag ,nonClicked, children}) => {
     const [isClicked, setClicked] = useState(isActiveTag);
-    const {filterTags, setFilterTags} = useContext(tagContext);
+    const {selectorTags, setSelectorTags} = useContext(selectorContext);
 
     const handleClick = () => {
         // if (nonClicked) return;
@@ -14,10 +14,10 @@ export const Tag = ({isActiveTag ,nonClicked, children}) => {
     useEffect(() => {
         // if (nonClicked) return;
 
-        if (isClicked && !filterTags.includes(children))
-            setFilterTags([...filterTags, children]) 
+        if (isClicked && !selectorTags.includes(children))
+            setSelectorTags([...selectorTags, children]) 
         else if (!isClicked){
-            setFilterTags(filterTags.filter(el => el!=children))
+            setSelectorTags(selectorTags.filter(el => el!=children))
         }
     }, [isClicked])
 
