@@ -11,7 +11,7 @@ export const List = () => {
     let LIST = [
         {
             title: "Plastic: A Novel",
-            author: "Someone",
+            author: "some",
             date: "February 2024",
             price: 420,
             tags: ["Climate change", "Sci-Fi"]
@@ -39,7 +39,11 @@ export const List = () => {
             tags: ["Health", "Biochemistry"]
           },
           
-    ];
+    ].filter((data)=>{
+      if (data.title !== '' && data.author !== "" && data.date !== '' && data.price !== undefined) {
+        return data;
+      }
+    });
     
     const [list, setList] = useState(LIST);
 
@@ -47,17 +51,11 @@ export const List = () => {
       setList(organizeList(selectorTags, selectorOption, LIST));
     }, [selectorTags, selectorOption])
 
-    // let correctList = [...list]
 
     return (
         <div className={style.container}> 
           <ul className={style.list}>
-            {list.map((data,i)=>{
-              if (data.title == '' || data.author == '' || data.date == '' || data.price == undefined) {
-                {/* correctList = LIST.filter((el)=>el!=data); */}
-                return;
-              } else return <Item key={i} data={data}/>
-            })}
+            {list.map((data,i)=><Item key={i} data={data}/>)}
           </ul>
           <TotalPrice list={list}/>
         </div>
