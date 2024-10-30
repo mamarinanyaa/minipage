@@ -4,60 +4,26 @@ import { Item } from './Item/Item';
 import { TotalPrice } from './TotalPrice/TotalPrice';
 import { selectorContext } from '../../../context/selectorContext';
 import { organizeList } from '../../../utils/utils';
+import { useInitialList } from '../../../hooks/useInitialList';
 
 export const List = () => {
+  
     const {selectorTags, selectorOption} = useContext(selectorContext);
+    const [initialList] = useInitialList();
+    const [list, setList] = useState(initialList);
 
-    let LIST = [
-        {
-            title: "Plastic: A Novel",
-            author: "some",
-            date: "February 2024",
-            price: 420,
-            tags: ["Climate change", "Sci-Fi"]
-        },
-        {
-            title: "Space Oddities: The Mysterious Anomalies Challenging Our Understanding of the Universe",
-            author: "Harry Cliff",
-            date: "March 2024",
-            price: 542,
-            tags: ["Climate change", "History"]
-          },
-          {
-            title: "H Is for Hope: Climate Change from A to Z",
-            author: "Elizabeth Kolbert",
-            illustrator: "Wesley Allsbrook",
-            date: "March 2024",
-            price: 674,
-            tags: ["Climate change", "Technology"]
-          },
-          {
-            title: "The Exquisite Machine: The New Science of the Heart",
-            author: "Sian E. Harding",
-            date: "February 2024",
-            price: 981,
-            tags: ["Health", "Biochemistry"]
-          },
-          
-    ].filter((data)=>{
-      if (data.title !== '' && data.author !== "" && data.date !== '' && data.price !== undefined) {
-        return data;
-      }
-    });
     
-    const [list, setList] = useState(LIST);
-
     useEffect(() => {
-      setList(organizeList(selectorTags, selectorOption, LIST));
-    }, [selectorTags, selectorOption])
+      setList(organizeList(selectorTags, selectorOption, initialList));
+    }, [selectorTags, selectorOption, initialList])
 
 
     return (
-        <div className={style.container}> 
-          <ul className={style.list}>
-            {list.map((data,i)=><Item key={i} data={data}/>)}
-          </ul>
-          <TotalPrice list={list}/>
-        </div>
+      <div className={style.container}> 
+        <ul className={style.list}>
+          {list.map((data,i)=><Item key={i} data={data}/>)}
+        </ul>
+        <TotalPrice list={list}/>
+      </div>
     )
 }
