@@ -1,14 +1,15 @@
-import { useState, useContext, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import style from './List.module.css'
 import { Item } from './Item/Item';
 import { TotalPrice } from './TotalPrice/TotalPrice';
-import { selectorContext } from '../../../context/selectorContext';
 import { organizeList } from '../../../utils/utils';
 import { useInitialList } from '../../../hooks/useInitialList';
+import { useSelector } from 'react-redux';
 
 export const List = () => {
-  
-    const {selectorTags, selectorOption} = useContext(selectorContext);
+
+    const selectorTags = useSelector(state => state.selectorReducer.selectorTags)
+    const selectorOption = useSelector(state => state.selectorReducer.selectorOption)
     const [initialList] = useInitialList();
     const [list, setList] = useState(initialList);
 

@@ -3,10 +3,12 @@ import style from './TagControls.module.css'
 import {ReactComponent as ArrowTagIconDown} from "./img/arrowtag_down.svg"
 import {ReactComponent as ArrowTagIconUp} from "./img/arrowtag_up.svg"
 import { selectorContext } from '../../../../context/selectorContext'
+import { useDispatch } from 'react-redux'
+import { selectorReset } from '../../../../store/selector/action'
 
 export const TagControls = ({isDropdown, setDropdown}) => {
 
-    const {setSelectorTags, setSelectorOption} = useContext(selectorContext);
+    const dispatch = useDispatch();    
 
     const handleClick = (e) => {
         e.stopPropagation();
@@ -21,8 +23,7 @@ export const TagControls = ({isDropdown, setDropdown}) => {
             </button>
 
             <button onClick={()=>{
-                setSelectorTags([]);
-                setSelectorOption({});
+                dispatch(selectorReset());
             }} className={style.reset}>
                 reset rules
             </button>

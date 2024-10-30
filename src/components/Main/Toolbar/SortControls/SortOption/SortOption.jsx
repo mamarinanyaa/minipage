@@ -1,13 +1,15 @@
 import style from './SortOption.module.css'
 import { ReactComponent as ArrowIconUp } from './img/arrow_up.svg'
 import {ReactComponent as ArrowIconDown} from './img/arrow.svg'
-import { useState, useEffect, useContext } from 'react';
-import { selectorContext } from '../../../../../context/selectorContext';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectorOptionChange } from '../../../../../store/selector/action';
 
 export const SortOption = ({id, activeOption, setActiveOption, className, children}) => {
 
     const [isAscending, setIsAscending] = useState(false);
-    const {selectorOption, setSelectorOption} = useContext(selectorContext)
+    const selectorOption = useSelector(state => state.selectorReducer.selectorOption);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         if (selectorOption.key === undefined){
@@ -20,10 +22,10 @@ export const SortOption = ({id, activeOption, setActiveOption, className, childr
         
         if (activeOption != id) return;
 
-        setSelectorOption({
+        dispatch(selectorOptionChange({
             key: children,
             value: isAscending ? 'up' : 'down'
-        })
+        }));
 
     }, [isAscending])
 

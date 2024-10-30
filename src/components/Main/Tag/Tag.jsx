@@ -1,10 +1,12 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import style from './Tag.module.css';
-import { selectorContext } from '../../../context/selectorContext';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectorTagsChange } from '../../../store/selector/action';
 
 export const Tag = ({isActiveTag ,nonClicked, children}) => {
     const [isClicked, setClicked] = useState(isActiveTag);
-    const {selectorTags, setSelectorTags} = useContext(selectorContext);
+    const selectorTags = useSelector(state => state.selectorReducer.selectorTags);
+    const dispatch = useDispatch();
 
     const handleClick = () => {
         // if (nonClicked) return;
@@ -15,9 +17,9 @@ export const Tag = ({isActiveTag ,nonClicked, children}) => {
         // if (nonClicked) return;
 
         if (isClicked && !selectorTags.includes(children))
-            setSelectorTags([...selectorTags, children]) 
+            dispatch(selectorTagsChange([...selectorTags, children]));
         else if (!isClicked){
-            setSelectorTags(selectorTags.filter(el => el!=children))
+            dispatch(selectorTagsChange(selectorTags.filter(el => el!=children)));
         }
     }, [isClicked])
 
