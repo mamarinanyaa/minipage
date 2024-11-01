@@ -4,9 +4,9 @@ import { initListReducer } from "./initList/initListReducer";
 import { selectorReducer } from "./selector/selectorReducer";
 import { thunk } from "redux-thunk";
 
-const reducer = combineReducers({
+const rootReducer = combineReducers({
     initListReducer,
     selectorReducer
 });
 
-export const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)))
+export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
