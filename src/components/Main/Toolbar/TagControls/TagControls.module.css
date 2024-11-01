@@ -16,3 +16,12 @@
  .reset {
     color: #FFF8F3;
  }
+
+ @media (max-width: 768px){
+    .container {
+        display: grid;
+        justify-items:start;
+        grid-template-columns: 1fr;
+        gap: 5px;
+    }
+ }

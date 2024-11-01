@@ -11,3 +11,14 @@
     font-size: 16px;
     line-height: 19.36px;
 }
+
+@media (max-width: 400px) {
+    
+    .container {
+        font-size: 10px;
+    }
+    .title {
+        font-size: 12px;
+        line-height: 15.36px;
+    }
+  }

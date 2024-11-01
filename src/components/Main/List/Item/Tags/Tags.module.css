@@ -20,3 +20,17 @@
     background-color: #758694;
     color: #FFF8F3;
 }
+
+@media (max-width: 340px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .tag{
+        width: min-content;
+        white-space: nowrap; 
+        padding: 10px 20px;
+        display: inline-block;
+    }
+  }

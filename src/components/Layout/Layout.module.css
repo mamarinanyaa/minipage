@@ -1,15 +1,16 @@
 .container {
     max-width: 500px;
     margin: 0 auto;
+    padding: 0 15px;
 
     display: grid;
     align-items: center;
     gap: 10px;
-
   }
   
-  @media (min-width: 768px) {
+  @media (max-width: 768px) {
     .container {
-      /* padding: 0 30px; */
+      padding: 0 15px;
     }
   }
+  
