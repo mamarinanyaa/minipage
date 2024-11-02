@@ -28,8 +28,15 @@
     .container {
         gap: 10px;
     }
-    .tag{
+    .tag {
         width: min-content;
         display: inline-block;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .tag {
+        font-size: 10px;
+        padding: 8px;
     }
   }

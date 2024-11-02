@@ -26,8 +26,9 @@ export const initListRequestAsync = () => (dispatch) => {
     axios("http://localhost:5000/data").then(({data})=>{
         
         dispatch(initListRequestSuccess(data.filter((data)=>{
-        if (data.title !== '' && data.author !== "" && data.date !== '' && data.price !== undefined)
-            return data;
+            if (data.title !== '' && data.author !== "" && data.date !== '' && data.price !== undefined)
+                return data;
+            else console.error('Error: incomplete data', data);
         })));
 
     }).catch(err => {

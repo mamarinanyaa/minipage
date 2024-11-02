@@ -7,7 +7,7 @@ export const organizeList = (selectorTags, selectorOption, LIST) => {
           element.tags.some(tag => selectorTags.includes(tag))
         );
 
-      switch (selectorOption.key){
+      switch (selectorOption.key) {
         case 'price':
           organizedList = [...organizedList].sort((a, b) =>
             selectorOption.value === 'up' ? b.price - a.price : a.price - b.price
